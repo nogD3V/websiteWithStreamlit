@@ -2,6 +2,7 @@ from PIL import Image
 import requests
 import streamlit as st
 from streamlit_lottie import st_lottie
+from streamlit_option_menu import option_menu
 
 #Definindo o titulo da página e o icone da aba.
 st.set_page_config(page_title="NOGD3V", page_icon=":globe_with_meridians:", layout="wide")
@@ -22,6 +23,24 @@ def local_css(file_name):
 local_css("style/style.css")
 
 
+#BARRA DE NAVEGAÇÃO LATERAL
+EXAMPLE_NO = 1
+
+def streamlit_menu(example=1):
+    if example == 1:
+        with st.sidebar:
+            selected = option_menu(
+                menu_title="Menu",
+                options=["Home", "Projects", "Contact"],
+                icons=["house", "book", "envelope"],
+                menu_icon="cast",
+                default_index=0,
+            )
+        return selected
+
+selected = streamlit_menu(example=EXAMPLE_NO)
+
+
 #HEADER
 with st.container():
     st.subheader("Olá, me chamo Lucas :wave:")
@@ -29,6 +48,7 @@ with st.container():
     st.write("##")
     st.write("Apaixonado pela área de dados, extraio, carrego e transformo dados para solucionar problemas empresáriais.")
     st.write("[Visite meu LINKEDIN > ](https://www.linkedin.com/in/nogd3v/)")
+
 
 
 #Importando assets
